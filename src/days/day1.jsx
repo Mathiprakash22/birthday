@@ -86,6 +86,7 @@ export default function Day1() {
   const [lastEscapes, setLastEscapes] = useState(0)
   const [lastPos, setLastPos] = useState({ x: 50, y: 50 })
   const [muted, setMuted] = useState(false)
+  const [started, setStarted] = useState(false)
   const audioRef = useRef(null)
   const timerRef = useRef(null)
 
@@ -193,6 +194,12 @@ export default function Day1() {
 
   // ── cleanup ──
   useEffect(() => () => clearTimeout(timerRef.current), [])
+
+  // ── entry tap ──
+  const handleStart = () => {
+    if (audioRef.current) audioRef.current.play().catch(() => {})
+    setStarted(true)
+  }
 
   // ── mute toggle ──
   const toggleMute = () => {
@@ -387,6 +394,20 @@ export default function Day1() {
       <div className="scene-wrap" key={phase}>
         {scenes[phase]?.()}
       </div>
+
+      <audio ref={audioRef} src="/music.mp3" loop />
+
+      {/* Entry screen */}
+      {!started && (
+        <div className="entry-overlay" onClick={handleStart}>
+          <div className="entry-content">
+            <span className="entry-bf">🦋</span>
+            <p className="entry-title">Day 1</p>
+            <p className="entry-sub">The Wings You Never See</p>
+            <p className="entry-tap">Tap anywhere to begin</p>
+          </div>
+        </div>
+      )}
 
       {/* Modal */}
       {renderModal()}

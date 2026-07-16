@@ -1,6 +1,58 @@
 /* ── Day 1 – The Wings You Never See ── */
 @import './daybase.css';
 
+/* ── Entry overlay ── */
+.entry-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: linear-gradient(160deg, #0a0010 0%, #1a0040 50%, #001a3a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  animation: sceneFadeIn 1s ease;
+}
+.entry-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  padding: 20px;
+}
+.entry-bf {
+  font-size: 4rem;
+  animation: bfHover 2.5s ease-in-out infinite;
+  display: block;
+}
+.entry-title {
+  font-size: clamp(1.8rem, 7vw, 2.8rem);
+  font-weight: 900;
+  background: linear-gradient(90deg, #c084fc, #67e8f9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 2px;
+}
+.entry-sub {
+  font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+  color: #a5b4fc;
+  letter-spacing: 1px;
+}
+.entry-tap {
+  margin-top: 20px;
+  font-size: 0.8rem;
+  color: rgba(192,132,252,.6);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  animation: tapPulse 2s ease-in-out infinite;
+}
+@keyframes tapPulse {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 1; }
+}
+
 /* ── Root ── */
 .day1-root {
   min-height: 100vh;
