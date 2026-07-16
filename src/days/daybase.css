@@ -1,0 +1,156 @@
+/* Shared day page base styles */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #0a0010;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.day-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.day-bg-glow {
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.day-bg-glow.top {
+  top: -80px;
+  left: -80px;
+  background: #7c3aed;
+}
+
+.day-bg-glow.bottom {
+  bottom: -80px;
+  right: -80px;
+  background: #0ea5e9;
+}
+
+.day-content {
+  position: relative;
+  z-index: 1;
+  max-width: 420px;
+  width: 100%;
+}
+
+.day-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, rgba(139,92,246,0.3), rgba(103,232,249,0.2));
+  border: 1px solid rgba(192,132,252,0.4);
+  border-radius: 50px;
+  padding: 6px 20px;
+  font-size: 0.75rem;
+  color: #c084fc;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.day-emoji {
+  font-size: 5rem;
+  display: block;
+  margin-bottom: 16px;
+  animation: floatEmoji 3s ease-in-out infinite;
+}
+
+@keyframes floatEmoji {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50%       { transform: translateY(-14px) rotate(3deg); }
+}
+
+.day-title {
+  font-size: clamp(1.6rem, 7vw, 2.4rem);
+  font-weight: 900;
+  background: linear-gradient(90deg, #c084fc, #67e8f9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 14px;
+  line-height: 1.2;
+}
+
+.day-message {
+  color: #cbd5e1;
+  font-size: clamp(0.9rem, 3.5vw, 1.05rem);
+  line-height: 1.8;
+  margin-bottom: 28px;
+  padding: 0 4px;
+}
+
+.day-card {
+  background: linear-gradient(145deg, rgba(139,92,246,0.12), rgba(103,232,249,0.07));
+  border: 1px solid rgba(192,132,252,0.25);
+  border-radius: 20px;
+  padding: 22px 20px;
+  margin-bottom: 28px;
+  backdrop-filter: blur(8px);
+}
+
+.day-card p {
+  color: #e2e8f0;
+  font-size: 0.95rem;
+  line-height: 1.9;
+}
+
+.day-card .highlight {
+  color: #c084fc;
+  font-weight: 700;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #7c3aed, #0ea5e9);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 28px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(124,58,237,0.4);
+}
+
+.back-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(124,58,237,0.5);
+}
+
+.sparkles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sparkle {
+  position: absolute;
+  font-size: 1rem;
+  animation: sparkleFloat calc(4s + var(--i) * 0.3s) ease-in-out infinite;
+  left: calc(var(--i) * 10% + 5%);
+  top: calc(var(--i) * 9% + 5%);
+  opacity: 0.4;
+}
+
+@keyframes sparkleFloat {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.3; }
+  50%       { transform: translateY(-20px) scale(1.2); opacity: 0.7; }
+}
