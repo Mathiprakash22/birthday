@@ -542,7 +542,7 @@ export default function Day2() {
     }
 
     setTimeout(() => typeInto('name', 'Pattu 🌸', 60, () => {
-      setTimeout(() => typeInto('dept', 'Computer Science', 60, () => {
+      setTimeout(() => typeInto('dept', 'Civil', 60, () => {
         setTimeout(() => typeInto('phone', '+91 98765 43210', 60, () => {
           setTimeout(() => runGlitch(0), 500)
         }), 600)
