@@ -85,10 +85,9 @@ export default function Day1() {
   const [modal, setModal] = useState(null)             // memory text
   const [lastEscapes, setLastEscapes] = useState(0)
   const [lastPos, setLastPos] = useState({ x: 50, y: 50 })
-  const [muted, setMuted] = useState(false)
   const [started, setStarted] = useState(false)
-  const audioRef = useRef(null)
   const timerRef = useRef(null)
+
 
   // ── helpers ──
   const after = (ms, fn) => { timerRef.current = setTimeout(fn, ms); return timerRef.current }
@@ -197,17 +196,10 @@ export default function Day1() {
 
   // ── entry tap ──
   const handleStart = () => {
-    if (audioRef.current) audioRef.current.play().catch(() => {})
     setStarted(true)
   }
 
-  // ── mute toggle ──
-  const toggleMute = () => {
-    setMuted(m => {
-      if (audioRef.current) audioRef.current.muted = !m
-      return !m
-    })
-  }
+
 
   // ─── Render helpers ───────────────────────────────────────────────────────
 
@@ -382,11 +374,6 @@ export default function Day1() {
       <div className="d1-glow top" />
       <div className="d1-glow bottom" />
 
-      {/* Mute button */}
-      <button className="mute-btn" onClick={toggleMute} aria-label="Toggle sound">
-        {muted ? '🔇' : '🔊'}
-      </button>
-
       {/* Day badge */}
       <div className="d1-badge">Day 1 of 19 · 🦋 The Wings You Never See</div>
 
@@ -394,8 +381,6 @@ export default function Day1() {
       <div className="scene-wrap" key={phase}>
         {scenes[phase]?.()}
       </div>
-
-      <audio ref={audioRef} src="/music.mp3" loop />
 
       {/* Entry screen */}
       {!started && (
